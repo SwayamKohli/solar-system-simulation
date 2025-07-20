@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>3D Solar System Simulation</title>
+    <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+    <!-- Main Control Panel -->
+    <div id="control-panel" class="control-panel">
+        <div class="panel-header">
+            <h1 class="panel-title">Solar System Control</h1>
+            <button id="panel-toggle" class="panel-toggle" aria-label="Toggle Control Panel">
+                <span class="toggle-icon"></span>
+            </button>
+        </div>
+
+        <!-- Main Controls -->
+        <div class="panel-content">
+            <div class="main-controls">
+                <button id="pauseResumeBtn" class="control-btn primary">
+                    <span class="btn-icon pause-icon"></span>
+                    <span class="btn-text">Pause</span>
+                </button>
+                <button id="themeToggleBtn" class="control-btn secondary">
+                    <span class="btn-icon theme-icon"></span>
+                    <span class="btn-text">Dark Mode</span>
+                </button>
+                <button id="resetViewBtn" class="control-btn tertiary">
+                    <span class="btn-icon reset-icon"></span>
+                    <span class="btn-text">Reset View</span>
+                </button>
+            </div>
+
+            <!-- Global Speed Control -->
+            <div class="speed-section">
+                <div class="section-header">
+                    <h3>Global Speed</h3>
+                    <span id="globalSpeedValue" class="speed-value">1.0x</span>
+                </div>
+                <div class="slider-container">
+                    <input type="range" id="globalSpeed" class="speed-slider" min="0" max="5" step="0.1" value="1">
+                    <div class="slider-track"></div>
+                </div>
+            </div>
+
+            <!-- Individual Planet Controls -->
+            <div class="planets-section">
+                <div class="section-header">
+                    <h3>Individual Planet Controls</h3>
+                </div>
+                <div class="planets-grid">
+                    <!-- Mercury -->
+                    <div class="planet-control" data-planet="mercury">
+                        <div class="planet-info">
+                            <div class="planet-color mercury-color"></div>
+                            <span class="planet-name">Mercury</span>
+                            <span class="planet-speed-value">1.0x</span>
+                        </div>
+                        <input type="range" class="planet-slider" min="0" max="3" step="0.1" value="1">
+                    </div>
+
+                    <!-- Venus -->
+                    <div class="planet-control" data-planet="venus">
+                        <div class="planet-info">
+                            <div class="planet-color venus-color"></div>
+                            <span class="planet-name">Venus</span>
+                            <span class="planet-speed-value">1.0x</span>
+                        </div>
+                        <input type="range" class="planet-slider" min="0" max="3" step="0.1" value="1">
+                    </div>
+
+                    <!-- Earth -->
+                    <div class="planet-control" data-planet="earth">
+                        <div class="planet-info">
+                            <div class="planet-color earth-color"></div>
+                            <span class="planet-name">Earth</span>
+                            <span class="planet-speed-value">1.0x</span>
+                        </div>
+                        <input type="range" class="planet-slider" min="0" max="3" step="0.1" value="1">
+                    </div>
+
+                    <!-- Mars -->
+                    <div class="planet-control" data-planet="mars">
+                        <div class="planet-info">
+                            <div class="planet-color mars-color"></div>
+                            <span class="planet-name">Mars</span>
+                            <span class="planet-speed-value">1.0x</span>
+                        </div>
+                        <input type="range" class="planet-slider" min="0" max="3" step="0.1" value="1">
+                    </div>
+
+                    <!-- Jupiter -->
+                    <div class="planet-control" data-planet="jupiter">
+                        <div class="planet-info">
+                            <div class="planet-color jupiter-color"></div>
+                            <span class="planet-name">Jupiter</span>
+                            <span class="planet-speed-value">1.0x</span>
+                        </div>
+                        <input type="range" class="planet-slider" min="0" max="3" step="0.1" value="1">
+                    </div>
+
+                    <!-- Saturn -->
+                    <div class="planet-control" data-planet="saturn">
+                        <div class="planet-info">
+                            <div class="planet-color saturn-color"></div>
+                            <span class="planet-name">Saturn</span>
+                            <span class="planet-speed-value">1.0x</span>
+                        </div>
+                        <input type="range" class="planet-slider" min="0" max="3" step="0.1" value="1">
+                    </div>
+
+                    <!-- Uranus -->
+                    <div class="planet-control" data-planet="uranus">
+                        <div class="planet-info">
+                            <div class="planet-color uranus-color"></div>
+                            <span class="planet-name">Uranus</span>
+                            <span class="planet-speed-value">1.0x</span>
+                        </div>
+                        <input type="range" class="planet-slider" min="0" max="3" step="0.1" value="1">
+                    </div>
+
+                    <!-- Neptune -->
+                    <div class="planet-control" data-planet="neptune">
+                        <div class="planet-info">
+                            <div class="planet-color neptune-color"></div>
+                            <span class="planet-name">Neptune</span>
+                            <span class="planet-speed-value">1.0x</span>
+                        </div>
+                        <input type="range" class="planet-slider" min="0" max="3" step="0.1" value="1">
+                    </div>
+                </div>
+            </div>
+
+            <!-- View Controls -->
+            <div class="view-section">
+                <div class="section-header">
+                    <h3>View Options</h3>
+                </div>
+                <div class="view-controls">
+                    <button id="showOrbitsBtn" class="toggle-btn active">
+                        <span class="toggle-indicator"></span>
+                        Show Orbits
+                    </button>
+                    <button id="showLabelsBtn" class="toggle-btn active">
+                        <span class="toggle-indicator"></span>
+                        Show Labels
+                    </button>
+                    <button id="showStarsBtn" class="toggle-btn active">
+                        <span class="toggle-indicator"></span>
+                        Background Stars
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 3D Canvas -->
+    <canvas id="webgl"></canvas>
+
+    <!-- Info Panel -->
+    <div id="info-panel" class="info-panel">
+        <div class="info-header">
+            <h4 id="info-title">Solar System</h4>
+            <button id="info-close" class="info-close" aria-label="Close Info">&times;</button>
+        </div>
+        <div id="info-content" class="info-content">
+            <p>Click on any planet to view detailed information</p>
+        </div>
+    </div>
+
+    <!-- Tooltip for Planet Hover -->
+    <div id="tooltip" class="tooltip">
+        <div class="tooltip-content">
+            <div class="tooltip-title"></div>
+            <div class="tooltip-details"></div>
+        </div>
+    </div>
+
+    <!-- Loading Screen -->
+    <div id="loading-screen" class="loading-screen">
+        <div class="loading-content">
+            <div class="solar-system-loader">
+                <div class="sun-loader"></div>
+                <div class="planet-loader planet1"></div>
+                <div class="planet-loader planet2"></div>
+                <div class="planet-loader planet3"></div>
+            </div>
+            <h2 class="loading-title">Loading Solar System</h2>
+            <div class="loading-progress">
+                <div id="loading-bar" class="loading-bar"></div>
+            </div>
+            <p class="loading-text">Initializing 3D simulation...</p>
+        </div>
+    </div>
+
+    <!-- Stats Display -->
+    <div id="stats-panel" class="stats-panel">
+        <div class="stat-item">
+            <span class="stat-label">FPS</span>
+            <span id="fps-counter" class="stat-value">60</span>
+        </div>
+        <div class="stat-item">
+            <span class="stat-label">Objects</span>
+            <span id="object-counter" class="stat-value">9</span>
+        </div>
+    </div>
+
+    <!-- Mobile Menu Toggle -->
+    <button id="mobile-menu-toggle" class="mobile-menu-toggle" aria-label="Toggle Menu">
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+    </button>
+
+    <!-- Three.js CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/three@0.157.0/build/three.min.js"></script>
+    <script src="main.js"></script>
+</body>
+
+</html>
